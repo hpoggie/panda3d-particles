@@ -6,29 +6,25 @@ from panda3d.physics import*
 
 def createEffect(values):
     p = ParticleEffect()
-    loadValues(values, p)
+    self.loadValues(values, p)
     color_gradient=loader.loadTexture(values["color_gradient"])
     size_gradient=loader.loadTexture(values["size_gradient"])
-    shape_gradient=loader.loadTexture(values["shape_gradient"])
-    blend_gradient=loader.loadTexture("data/blend.png", minfilter=Texture.FTNearest, magfilter=Texture.FTNearest)
+    shape_gradient=loader.loadTexture(values["shape_gradient"])    
+    blend_gradient=loader.loadTexture("blend2.png", minfilter=Texture.FTNearest, magfilter=Texture.FTNearest)
     color_gradient.setWrapU(Texture.WMClamp)
     color_gradient.setWrapV(Texture.WMClamp)
-    color_gradient.setFormat(Texture.F_srgb_alpha)
     size_gradient.setWrapU(Texture.WMClamp)
     size_gradient.setWrapV(Texture.WMClamp)
     shape_gradient.setWrapU(Texture.WMClamp)
     shape_gradient.setWrapV(Texture.WMClamp)
     blend_gradient.setWrapU(Texture.WMClamp)
     blend_gradient.setWrapV(Texture.WMClamp)
-    for geom in p.findAllMatches('**/+GeomNode'):       
+    for geom in self.p.findAllMatches('**/+GeomNode'):
         geom.setDepthWrite(False)
-        #geom.setBin("transparent", 31)
-        #need to hide it from the water and shadow camera now... I don't know hot to get the geom later :(
-        geom.hide(BitMask32.bit(1))
-        geom.hide(BitMask32.bit(2))
-        geom.setShader(Shader.load(Shader.SLGLSL, "shaders/vfx_v.glsl","shaders/vfx_f.glsl"), 1)
-        geom.setShaderInput('distortion',values['distortion'])
-        #geom.setShaderInput("fog",  Vec4(0.4, 0.4, 0.4, 0.002))
+        geom.setBin("transparent", 31)
+        geom.setShader(Shader.load(Shader.SLGLSL, "vfx_v.glsl","vfx_f.glsl"), 1)
+        geom.setShaderInput('distortion',0.51)
+        geom.setShaderInput("fog",  Vec4(0.4, 0.4, 0.4, 0.002))
         geom.setShaderInput("color_gradient", color_gradient)
         geom.setShaderInput("size_gradient",  size_gradient)
         geom.setShaderInput("shape_gradient", shape_gradient)
@@ -59,19 +55,15 @@ def loadValues(v, p):
     #p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAIN)
     #p0.renderer.setUserAlpha(1.00)
     # Sprite parameters
-    p0.renderer.addTextureFromFile('particle/smoke1.png') #some default must be added or it bugs out
+    p0.renderer.addTextureFromFile('../partices/smoke1.png') #some default must be added or it bugs out
     p0.renderer.setColor(Vec4(1.00, 1.00, 1.00, 1.00))
     p0.renderer.setXScaleFlag(0)
     p0.renderer.setYScaleFlag(0)
     p0.renderer.setAnimAngleFlag(0)
     p0.renderer.setNonanimatedTheta(180.0000) #?
-    p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PRALPHANONE)    
-    if v['colorBlend']=="blend":    
-        p0.renderer.setAlphaDisable(0)
-        p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOneMinusIncomingAlpha)#TODO!
-    elif v['colorBlend']=="add":    
-        p0.renderer.setAlphaDisable(1)
-        p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)        
+    p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PRALPHANONE)
+    p0.renderer.setAlphaDisable(0)
+    p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOneMinusIncomingAlpha)#TODO!
     p0.renderer.getColorInterpolationManager().addLinear(0.0,1.0,Vec4(0.0,0.0,0.0,1.0),Vec4(1.0,1.0,1.0,1.0),True)
     # Emitter parameters
     p0.emitter.setEmissionType(v["mode"])
@@ -108,7 +100,7 @@ def loadValues(v, p):
     elif v['emiter']=='TangentRingEmitter':         
         p0.emitter.setRadius(v["radius"])
         p0.emitter.setRadiusSpread(v["radiusSpread"])
-    p.addParticles(p0)
+    self.p.addParticles(p0)
     f0 = ForceGroup.ForceGroup('default')
     # Force parameters
     if v["forceVector"][3]>0.0:

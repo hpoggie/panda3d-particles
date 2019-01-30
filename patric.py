@@ -2,6 +2,7 @@ from panda3d.core import loadPrcFileData
 #loadPrcFileData('','show-frame-rate-meter  1')
 loadPrcFileData('','win-size 1024 720')
 loadPrcFileData('','sync-video 0')
+loadPrcFileData('','model-path assets')
 #loadPrcFileData('','undecorated 1')
 from panda3d.core import *
 from direct.particles.ParticleEffect import ParticleEffect
