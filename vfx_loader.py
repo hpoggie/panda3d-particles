@@ -60,7 +60,7 @@ def loadValues(v, p):
     #p0.renderer.setUserAlpha(1.00)
     # Sprite parameters
     p0.renderer.addTextureFromFile(
-        '../partices/smoke1.png')  #some default must be added or it bugs out
+        '../particle/smoke1.png')  #some default must be added or it bugs out
     p0.renderer.setColor(Vec4(1.00, 1.00, 1.00, 1.00))
     p0.renderer.setXScaleFlag(0)
     p0.renderer.setYScaleFlag(0)
@@ -109,7 +109,7 @@ def loadValues(v, p):
     elif v['emiter'] == 'TangentRingEmitter':
         p0.emitter.setRadius(v["radius"])
         p0.emitter.setRadiusSpread(v["radiusSpread"])
-    self.p.addParticles(p0)
+    p.addParticles(p0)
     f0 = ForceGroup.ForceGroup('default')
     # Force parameters
     if v["forceVector"][3] > 0.0:
