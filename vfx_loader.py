@@ -7,12 +7,12 @@ from panda3d.physics import *
 
 def createEffect(values):
     p = ParticleEffect()
-    self.loadValues(values, p)
+    loadValues(values, p)
     color_gradient = loader.loadTexture(values["color_gradient"])
     size_gradient = loader.loadTexture(values["size_gradient"])
     shape_gradient = loader.loadTexture(values["shape_gradient"])
     blend_gradient = loader.loadTexture(
-        "blend2.png", minfilter=Texture.FTNearest, magfilter=Texture.FTNearest)
+        "blend.png", minfilter=Texture.FTNearest, magfilter=Texture.FTNearest)
     color_gradient.setWrapU(Texture.WMClamp)
     color_gradient.setWrapV(Texture.WMClamp)
     size_gradient.setWrapU(Texture.WMClamp)
@@ -21,18 +21,17 @@ def createEffect(values):
     shape_gradient.setWrapV(Texture.WMClamp)
     blend_gradient.setWrapU(Texture.WMClamp)
     blend_gradient.setWrapV(Texture.WMClamp)
-    for geom in self.p.findAllMatches('**/+GeomNode'):
+    for geom in p.findAllMatches('**/+GeomNode'):
         geom.setDepthWrite(False)
         geom.setBin("transparent", 31)
         geom.setShader(
-            Shader.load(Shader.SLGLSL, "vfx_v.glsl", "vfx_f.glsl"), 1)
+            Shader.load(Shader.SLGLSL, "../vfx_v.glsl", "../vfx_f.glsl"), 1)
         geom.setShaderInput('distortion', 0.51)
         geom.setShaderInput("fog", Vec4(0.4, 0.4, 0.4, 0.002))
         geom.setShaderInput("color_gradient", color_gradient)
         geom.setShaderInput("size_gradient", size_gradient)
         geom.setShaderInput("shape_gradient", shape_gradient)
         geom.setShaderInput("blend_gradient", blend_gradient)
-    #p.start(parent=self.root, renderParent = render)
     return p
 
 
