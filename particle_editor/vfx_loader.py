@@ -4,9 +4,20 @@ from direct.particles import Particles
 from direct.particles import ForceGroup
 from panda3d.physics import *
 import json
+import pkg_resources
 
 
-loadPrcFileData('', 'model-path shaders')
+def loadAssetPath(path):
+    # __name__ is the name of the current module
+    abspath = pkg_resources.resource_filename(__name__, path)
+    loadPrcFileData('', 'model-path ' + abspath)
+    return abspath
+
+
+shaderPath = loadAssetPath('shaders')
+print("[VFX LOADER] Shader path: " + shaderPath)
+texturePath = loadAssetPath('tex')
+print("[VFX LOADER] Texture path: " + texturePath)
 
 
 def createEffect(values):

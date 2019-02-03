@@ -1,8 +1,10 @@
+import os
 from panda3d.core import loadPrcFileData
 #loadPrcFileData('','show-frame-rate-meter  1')
 loadPrcFileData('', 'win-size 1024 720')
 loadPrcFileData('', 'sync-video 0')
 loadPrcFileData('', 'model-path assets')
+loadPrcFileData('', 'model-path ' + os.path.dirname(os.path.realpath(__file__)) + '/assets/')
 #loadPrcFileData('','undecorated 1')
 from panda3d.core import *
 from direct.particles.ParticleEffect import ParticleEffect
@@ -20,6 +22,10 @@ from os import makedirs
 from os.path import dirname
 from direct.stdpy.file import listdir, exists
 import vfx_loader
+import pkg_resources
+
+
+texturePath = pkg_resources.resource_filename(__name__, 'tex')
 
 
 def clamp(x, min_val=0.0, max_val=1.0):
@@ -775,7 +781,7 @@ class Editor(DirectObject):
         self.shapePickerFrame.setPos(_pos2d(base.win.getXSize() / 2 - 256, 0))
         self.shapePickerButtons = []
         self.shapeTex = []
-        dirList = listdir(Filename("tex/").toOsSpecific())
+        dirList = listdir(Filename(vfx_loader.texturePath).toOsSpecific())
         for fname in dirList:
             if Filename(fname).getExtension() in ('png', 'tga', 'dds'):
                 self.shapeTex.append("tex/" + fname)
