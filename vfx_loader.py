@@ -6,6 +6,9 @@ from panda3d.physics import *
 import json
 
 
+loadPrcFileData('', 'model-path shaders')
+
+
 def createEffect(values):
     p = ParticleEffect()
     loadValues(values, p)
@@ -26,7 +29,7 @@ def createEffect(values):
         geom.setDepthWrite(False)
         geom.setBin("transparent", 31)
         geom.setShader(
-            Shader.load(Shader.SLGLSL, "../vfx_v.glsl", "../vfx_f.glsl"), 1)
+            Shader.load(Shader.SLGLSL, "vfx_v.glsl", "vfx_f.glsl"), 1)
         geom.setShaderInput('distortion', 0.51)
         geom.setShaderInput("fog", Vec4(0.4, 0.4, 0.4, 0.002))
         geom.setShaderInput("color_gradient", color_gradient)
