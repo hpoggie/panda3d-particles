@@ -3,6 +3,7 @@ from direct.particles.ParticleEffect import ParticleEffect
 from direct.particles import Particles
 from direct.particles import ForceGroup
 from panda3d.physics import *
+import json
 
 
 def createEffect(values):
@@ -148,3 +149,9 @@ def loadValues(v, p):
         force4.setActive(1)
         f0.addForce(force4)
     p.addForceGroup(f0)
+
+
+def load(filename):
+    with open(filename, 'r') as f:
+        v = json.loads(f.read())
+        return createEffect(v)
