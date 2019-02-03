@@ -4,7 +4,7 @@
     "angle": 1.0,
     "birthRate": 0.01,
     "colorBlend": "blend",
-    "color_gradient": "particle/shiny_color.png",
+    "color_gradient": "shiny_color.png",
     "distortion": 0.0,
     "emiter": "RingEmitter",
     "forceJitter": [
@@ -72,6 +72,6 @@
     "pool": 500,
     "radius": 4.0,
     "radiusSpread": 1.0,
-    "shape_gradient": "particle/shiny_shape.png",
-    "size_gradient": "particle/shiny_size.png"
+    "shape_gradient": "shiny_shape.png",
+    "size_gradient": "shiny_size.png"
 }
