@@ -18,6 +18,8 @@ shaderPath = loadAssetPath('shaders')
 print("[VFX LOADER] Shader path: " + shaderPath)
 texturePath = loadAssetPath('tex')
 print("[VFX LOADER] Texture path: " + texturePath)
+miscAssetPath = loadAssetPath('assets')
+print("[VFX LOADER] Misc asset path: " + miscAssetPath)
 
 
 def createEffect(values):
