@@ -5,6 +5,13 @@ from direct.particles import ForceGroup
 from panda3d.physics import *
 import json
 import pkg_resources
+import colorama
+
+colorama.init()
+
+
+def log(msg):
+    print(colorama.Fore.BLUE + "[VFX LOADER] " + colorama.Fore.RESET + msg)
 
 
 def loadAssetPath(path):
@@ -15,11 +22,11 @@ def loadAssetPath(path):
 
 
 shaderPath = loadAssetPath('shaders')
-print("[VFX LOADER] Shader path: " + shaderPath)
+log("Shader path: " + shaderPath)
 texturePath = loadAssetPath('tex')
-print("[VFX LOADER] Texture path: " + texturePath)
+log("Texture path: " + texturePath)
 miscAssetPath = loadAssetPath('assets')
-print("[VFX LOADER] Misc asset path: " + miscAssetPath)
+log("Misc asset path: " + miscAssetPath)
 
 
 def createEffect(values):
