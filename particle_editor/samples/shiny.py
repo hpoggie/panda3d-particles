@@ -1,9 +1,12 @@
 from direct.showbase.ShowBase import ShowBase
 from panda3d.core import loadPrcFileData
 from particle_editor import vfx_loader
+import colorama
 
+colorama.init()
 shinyPath = vfx_loader.loadAssetPath('samples/shiny')
-print("[SAMPLE] Loaded asset path: " + shinyPath)
+print(colorama.Fore.YELLOW + "[SAMPLE] " + colorama.Fore.RESET +
+      "Loaded asset path: " + shinyPath)
 
 
 class App(ShowBase):
