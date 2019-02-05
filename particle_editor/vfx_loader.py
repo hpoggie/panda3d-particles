@@ -27,6 +27,8 @@ texturePath = loadAssetPath('tex')
 log("Texture path: " + texturePath)
 miscAssetPath = loadAssetPath('assets')
 log("Misc asset path: " + miscAssetPath)
+defaultParticlePath = loadAssetPath('particle')
+log("Default particle path: " + defaultParticlePath)
 
 
 def createEffect(values):
@@ -83,7 +85,7 @@ def loadValues(v, p):
     #p0.renderer.setUserAlpha(1.00)
     # Sprite parameters
     p0.renderer.addTextureFromFile(
-        '../particle/smoke1.png')  #some default must be added or it bugs out
+        'smoke1.png')  #some default must be added or it bugs out
     p0.renderer.setColor(Vec4(1.00, 1.00, 1.00, 1.00))
     p0.renderer.setXScaleFlag(0)
     p0.renderer.setYScaleFlag(0)
