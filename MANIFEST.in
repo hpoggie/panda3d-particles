@@ -1,0 +1,5 @@
+include particle_editor/assets/*
+include particle_editor/shaders/*
+include particle_editor/tex/*
+include particle_editor/samples/shiny/*
+include particle_editor/particle/*

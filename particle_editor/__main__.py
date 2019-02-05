@@ -4,7 +4,6 @@ from panda3d.core import loadPrcFileData
 loadPrcFileData('', 'win-size 1024 720')
 loadPrcFileData('', 'sync-video 0')
 loadPrcFileData('', 'model-path assets')
-loadPrcFileData('', 'model-path ' + os.path.dirname(os.path.realpath(__file__)) + '/assets/')
 #loadPrcFileData('','undecorated 1')
 from panda3d.core import *
 from direct.particles.ParticleEffect import ParticleEffect
@@ -21,7 +20,7 @@ from ast import literal_eval as astEval
 from os import makedirs
 from os.path import dirname
 from direct.stdpy.file import listdir, exists
-import vfx_loader
+from particle_editor import vfx_loader
 import pkg_resources
 
 
@@ -1575,5 +1574,9 @@ class Editor(DirectObject):
         vfx_loader.loadValues(v, self.p)
 
 
-app = Editor()
-base.run()
+def main():
+    app = Editor()
+    base.run()
+
+
+main()
