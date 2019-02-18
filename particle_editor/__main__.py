@@ -783,7 +783,7 @@ class Editor(DirectObject):
         dirList = listdir(Filename(vfx_loader.texturePath).toOsSpecific())
         for fname in dirList:
             if Filename(fname).getExtension() in ('png', 'tga', 'dds'):
-                self.shapeTex.append("tex/" + fname)
+                self.shapeTex.append(fname)
         k = 0
         for i in range(8):
             for j in range(8):
@@ -1219,7 +1219,9 @@ class Editor(DirectObject):
         img = PNMImage(512, 64, 3)
         for i in range(8):
             new = PNMImage()
-            new.read(self.shapeButtons[i]['frameTexture'])
+            # Apparently PNMImage doesn't use model-path
+            path = vfx_loader.texturePath + '/' + self.shapeButtons[i]['frameTexture']
+            new.read(path)
             img.copySubImage(new, 64 * i, 0, 0, 0, 64, 64)
 
         #img.write(self.saveDir+'/shape.png')
