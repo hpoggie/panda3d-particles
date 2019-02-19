@@ -1,13 +1,18 @@
 import setuptools
-import git
 
-r = git.Repo('.')
 
 setuptools.setup(
     name="particle-editor",
-    version=str(r.tags[-1]),  # Most recent tag as version
+    use_scm_version=True,
     packages=setuptools.find_packages(),
     include_package_data=True,
+    install_requires=[
+        'colorama==0.4.1',
+        'panda3d==1.10.0',
+    ],
+    setup_requires=[
+        'setuptools_scm'
+    ],
     options={
         'build_apps': {
             'exclude_modules': [
