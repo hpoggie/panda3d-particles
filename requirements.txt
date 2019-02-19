@@ -1,1 +1,5 @@
+colorama==0.4.1
+gitdb2==2.0.5
+GitPython==2.1.11
 panda3d==1.10.0
+smmap2==2.0.5
