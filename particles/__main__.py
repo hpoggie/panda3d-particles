@@ -20,7 +20,7 @@ from ast import literal_eval as astEval
 from os import makedirs
 from os.path import dirname
 from direct.stdpy.file import listdir, exists
-from particle_editor import vfx_loader
+from particles import vfx_loader
 import pkg_resources
 
 

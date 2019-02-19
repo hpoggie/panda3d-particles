@@ -2,7 +2,7 @@ import setuptools
 
 
 setuptools.setup(
-    name="particle-editor",
+    name="panda3d-particles",
     use_scm_version=True,
     packages=setuptools.find_packages(),
     include_package_data=True,
