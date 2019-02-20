@@ -18,7 +18,7 @@ class App(ShowBase):
         base.camera.setPos(30.0, -30.0, 10.0)
         base.camera.lookAt((0.0, 0.0, -1.0))
 
-        p = vfx_loader.load(shinyPath + '/shiny.json')
+        p = vfx_loader.load('shiny.json')
         p.start(parent=self.render, renderParent=render)
 
 
