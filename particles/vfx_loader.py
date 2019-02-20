@@ -177,6 +177,8 @@ def loadValues(v, p):
 
 
 def load(filename):
+    path = ConfigVariableSearchPath('model-path').getValue()
+    filename = path.findFile(filename)
     with open(filename, 'r') as f:
         v = json.loads(f.read())
         return createEffect(v)
