@@ -1,6 +1,6 @@
 from direct.showbase.ShowBase import ShowBase
-from panda3d.core import loadPrcFileData
-from particle_editor import vfx_loader
+from panda3d.core import loadPrcFileData, ConfigVariableSearchPath
+from particles import vfx_loader
 import colorama
 
 colorama.init()
