@@ -6,6 +6,8 @@ from panda3d.physics import *
 import json
 import pkg_resources
 import colorama
+import os
+
 
 colorama.init()
 
@@ -179,6 +181,15 @@ def loadValues(v, p):
 def load(filename):
     path = ConfigVariableSearchPath('model-path').getValue()
     filename = path.findFile(filename)
+
     with open(filename, 'r') as f:
         v = json.loads(f.read())
+
+        # Search the directory the json file is in for the image files
+        dirname = Filename.fromOsSpecific(os.path.dirname(filename)).getFullpath()
+        log("Loading textures from path: " + dirname)
+
+        for key in ('color_gradient', 'size_gradient', 'shape_gradient'):
+            v[key] = dirname + '/' + v[key]
+
         return createEffect(v)

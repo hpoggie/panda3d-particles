@@ -810,9 +810,10 @@ class Editor(DirectObject):
         print(dir)
         if not exists(dir):
             makedirs(dir)
-        self.values['color_gradient'] = self.saveDir + "_color.png"
-        self.values['size_gradient'] = self.saveDir + "_size.png"
-        self.values['shape_gradient'] = self.saveDir + "_shape.png"
+        effectName = self.saveDir.split('/')[-1]
+        self.values['color_gradient'] = effectName + "_color.png"
+        self.values['size_gradient'] = effectName + "_size.png"
+        self.values['shape_gradient'] = effectName + "_shape.png"
         self.values['distortion'] = 0.0
         self.currentColorGradient.write(self.saveDir + "_color.png")
         self.currentSizeGradient.write(self.saveDir + "_size.png")
