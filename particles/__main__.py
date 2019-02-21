@@ -1556,24 +1556,8 @@ class Editor(DirectObject):
         if shape_gradient == None:
             shape_gradient = self.currentShapeGradient
 
-        self.p = ParticleEffect()
-        self.loadValues()
-        for geom in self.p.findAllMatches('**/+GeomNode'):
-            geom.setDepthWrite(False)
-            geom.setBin("transparent", 31)
-            geom.setShader(
-                Shader.load(Shader.SLGLSL, "vfx_v.glsl", "vfx_f.glsl"), 1)
-            geom.setShaderInput('distortion', 0.51)
-            geom.setShaderInput("fog", Vec4(0.4, 0.4, 0.4, 0.002))
-            geom.setShaderInput("color_gradient", color_gradient)
-            geom.setShaderInput("size_gradient", size_gradient)
-            geom.setShaderInput("shape_gradient", shape_gradient)
-            geom.setShaderInput(
-                "blend_gradient",
-                loader.loadTexture(
-                    "blend.png",
-                    minfilter=Texture.FTNearest,
-                    magfilter=Texture.FTNearest))
+        self.p = vfx_loader.createEffectFromGradients(
+                self.values, color_gradient, size_gradient, shape_gradient)
         self.p.start(parent=self.root, renderParent=render)
 
     def loadValues(self, v=None):

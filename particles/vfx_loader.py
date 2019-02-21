@@ -32,12 +32,10 @@ defaultParticlePath = loadAssetPath('particle')
 log("Default particle path: " + defaultParticlePath)
 
 
-def createEffect(values):
+def createEffectFromGradients(
+        values, color_gradient, size_gradient, shape_gradient):
     p = ParticleEffect()
     loadValues(values, p)
-    color_gradient = loader.loadTexture(values["color_gradient"])
-    size_gradient = loader.loadTexture(values["size_gradient"])
-    shape_gradient = loader.loadTexture(values["shape_gradient"])
     blend_gradient = loader.loadTexture(
         miscAssetPath + "/blend.png",
         minfilter=Texture.FTNearest, magfilter=Texture.FTNearest)
@@ -63,6 +61,14 @@ def createEffect(values):
         geom.setShaderInput("shape_gradient", shape_gradient)
         geom.setShaderInput("blend_gradient", blend_gradient)
     return p
+
+
+def createEffect(values):
+    color_gradient = loader.loadTexture(values["color_gradient"])
+    size_gradient = loader.loadTexture(values["size_gradient"])
+    shape_gradient = loader.loadTexture(values["shape_gradient"])
+    return createEffectFromGradients(
+            values, color_gradient, size_gradient, shape_gradient)
 
 
 def loadValues(v, p):
