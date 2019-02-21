@@ -6,7 +6,7 @@
     "colorBlend": "add",
     "color_gradient": "particle/fire_color.png",
     "distortion": 0.5,
-    "emiter": "DiscEmitter",
+    "emitter": "DiscEmitter",
     "forceJitter": [
         0.0,
         1

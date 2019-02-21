@@ -76,7 +76,7 @@ def loadValues(v, p):
     # Particles parameters
     p0.setFactory("PointParticleFactory")  #const.
     p0.setRenderer("SpriteParticleRenderer")  #const.
-    p0.setEmitter(v["emiter"])
+    p0.setEmitter(v["emitter"])
     p0.setPoolSize(v["pool"])
     p0.setBirthRate(v["birthRate"])
     p0.setLitterSize(v["litter"])
@@ -116,32 +116,32 @@ def loadValues(v, p):
         Vec3(v["offsetForce"][0], v["offsetForce"][1], v["offsetForce"][2]))
     p0.emitter.setExplicitLaunchVector(Vec3(0.0000, 0.0000, 0.0000))
     p0.emitter.setRadiateOrigin(Point3(0.0000, 0.0000, 0.0000))
-    if v['emiter'] == 'BoxEmitter':
+    if v['emitter'] == 'BoxEmitter':
         p0.emitter.setMaxBound(Point3(v['max'][0], v['max'][1], v['max'][2]))
         p0.emitter.setMinBound(Point3(v['min'][0], v['min'][1], v['min'][2]))
-    elif v['emiter'] == 'DiscEmitter':
+    elif v['emitter'] == 'DiscEmitter':
         p0.emitter.setRadius(v["radius"])
         p0.emitter.setInnerAngle(v["innerAngle"])
         p0.emitter.setInnerMagnitude(v["innerMagnitude"])
         p0.emitter.setOuterAngle(v["outerAngle"])
         p0.emitter.setOuterMagnitude(v["outerMagnitude"])
-    elif v['emiter'] == 'LineEmitter':
+    elif v['emitter'] == 'LineEmitter':
         p0.emitter.setEndpoint1(Point3(v['max'][0], v['max'][1], v['max'][2]))
         p0.emitter.setEndpoint2(Point3(v['min'][0], v['min'][1], v['min'][2]))
-    elif v['emiter'] == 'PointEmitter':
+    elif v['emitter'] == 'PointEmitter':
         pass  #no options here
-    elif v['emiter'] == 'RectangleEmitter':
+    elif v['emitter'] == 'RectangleEmitter':
         p0.emitter.setMaxBound(Point3(v['max'][0], v['max'][1], v['max'][2]))
         p0.emitter.setMinBound(Point3(v['min'][0], v['min'][1], v['min'][2]))
-    elif v['emiter'] == 'RingEmitter':
+    elif v['emitter'] == 'RingEmitter':
         p0.emitter.setAngle(v["angle"])
         p0.emitter.setRadius(v["radius"])
         p0.emitter.setRadiusSpread(v["radiusSpread"])
-    elif v['emiter'] == 'SphereSurfaceEmitter':
+    elif v['emitter'] == 'SphereSurfaceEmitter':
         p0.emitter.setRadius(v["radius"])
-    elif v['emiter'] == 'SphereVolumeEmitter':
+    elif v['emitter'] == 'SphereVolumeEmitter':
         p0.emitter.setRadius(v["radius"])
-    elif v['emiter'] == 'TangentRingEmitter':
+    elif v['emitter'] == 'TangentRingEmitter':
         p0.emitter.setRadius(v["radius"])
         p0.emitter.setRadiusSpread(v["radiusSpread"])
     p.addParticles(p0)

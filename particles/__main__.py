@@ -369,7 +369,7 @@ class Editor(DirectObject):
             command=self.setEmiter,
             parent=self.configFrame)
         self.EmitterOptions.setPos(_pos2d(58, 12))
-        #emiter props
+        #emitter props
         self.propFrame = DirectFrame(
             frameSize=_rec2d(512, 128),
             frameColor=(0, 0, 0, 0.5),
@@ -852,7 +852,7 @@ class Editor(DirectObject):
         self.values["lifeSpread"] = self.configEntries[5].get()
         self.values["mass"] = self.configEntries[6].get()
         self.values["massSpread"] = self.configEntries[7].get()
-        self.values["emiter"] = self.EmitterOptions.get()
+        self.values["emitter"] = self.EmitterOptions.get()
         self.values["colorBlend"] = self.colorBlendOptions.get()
         self.values["offsetForce"] = [
             self.propsEntries[0].get(), self.propsEntries[1].get(),
@@ -1070,7 +1070,7 @@ class Editor(DirectObject):
         self.configEntries[5].set(str(self.values["lifeSpread"]))
         self.configEntries[6].set(str(self.values["mass"]))
         self.configEntries[7].set(str(self.values["massSpread"]))
-        #self.values["emiter"]=self.EmitterOptions.get()
+        #self.values["emitter"]=self.EmitterOptions.get()
         #self.values["colorBlend"]=self.colorBlendOptions.get()
         self.propsEntries[0].set(str(self.values["offsetForce"][0]))
         self.propsEntries[1].set(str(self.values["offsetForce"][1]))
@@ -1123,7 +1123,7 @@ class Editor(DirectObject):
         self.propsEntries[-mode]['frameColor'] = (1, 1, 1, 0.5)
         self.propsEntries[-mode]['state'] = 'disabled'
 
-        emiter_mode = self.EmitterOptions.get()
+        emitter_mode = self.EmitterOptions.get()
         #what options to hide
         # 0=offsetForce x
         # 1=offsetForce y
@@ -1176,7 +1176,7 @@ class Editor(DirectObject):
                                    (5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17)]
         }
         for i in range(18):
-            if i in what_to_hide[emiter_mode][mode - 1]:
+            if i in what_to_hide[emitter_mode][mode - 1]:
                 self.propsEntries[i].hide()
             else:
                 self.propsEntries[i].show()
