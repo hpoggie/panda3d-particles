@@ -19,7 +19,6 @@ def log(msg):
 def loadAssetPath(path):
     # __name__ is the name of the current module
     abspath = pkg_resources.resource_filename(__name__, path)
-    loadPrcFileData('', 'model-path ' + abspath)
     return abspath
 
 
@@ -40,7 +39,8 @@ def createEffect(values):
     size_gradient = loader.loadTexture(values["size_gradient"])
     shape_gradient = loader.loadTexture(values["shape_gradient"])
     blend_gradient = loader.loadTexture(
-        "blend.png", minfilter=Texture.FTNearest, magfilter=Texture.FTNearest)
+        miscAssetPath + "/blend.png",
+        minfilter=Texture.FTNearest, magfilter=Texture.FTNearest)
     color_gradient.setWrapU(Texture.WMClamp)
     color_gradient.setWrapV(Texture.WMClamp)
     size_gradient.setWrapU(Texture.WMClamp)
@@ -53,7 +53,9 @@ def createEffect(values):
         geom.setDepthWrite(False)
         geom.setBin("transparent", 31)
         geom.setShader(
-            Shader.load(Shader.SLGLSL, "vfx_v.glsl", "vfx_f.glsl"), 1)
+            Shader.load(Shader.SLGLSL,
+                shaderPath + "/vfx_v.glsl",
+                shaderPath + "/vfx_f.glsl"), 1)
         geom.setShaderInput('distortion', 0.51)
         geom.setShaderInput("fog", Vec4(0.4, 0.4, 0.4, 0.002))
         geom.setShaderInput("color_gradient", color_gradient)
@@ -87,7 +89,7 @@ def loadValues(v, p):
     #p0.renderer.setUserAlpha(1.00)
     # Sprite parameters
     p0.renderer.addTextureFromFile(
-        'smoke1.png')  #some default must be added or it bugs out
+        defaultParticlePath + '/smoke1.png')  #some default must be added or it bugs out
     p0.renderer.setColor(Vec4(1.00, 1.00, 1.00, 1.00))
     p0.renderer.setXScaleFlag(0)
     p0.renderer.setYScaleFlag(0)

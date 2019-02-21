@@ -26,6 +26,11 @@ import pkg_resources
 
 texturePath = pkg_resources.resource_filename(__name__, 'tex')
 
+loadPrcFileData('', 'model-path ' + vfx_loader.miscAssetPath)
+loadPrcFileData('', 'model-path ' + vfx_loader.shaderPath)
+loadPrcFileData('', 'model-path ' + vfx_loader.texturePath)
+loadPrcFileData('', 'model-path ' + vfx_loader.defaultParticlePath)
+
 
 def clamp(x, min_val=0.0, max_val=1.0):
     return min(max_val, max(min_val, float(x)))
