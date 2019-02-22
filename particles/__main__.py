@@ -22,6 +22,7 @@ from os.path import dirname
 from direct.stdpy.file import listdir, exists
 from particles import vfx_loader
 import pkg_resources
+from particles import camera
 
 
 texturePath = pkg_resources.resource_filename(__name__, 'tex')
@@ -75,6 +76,7 @@ class Editor(DirectObject):
         base.disableMouse()
         base.camera.setPos(30.0, -30.0, 10.0)
         base.camera.lookAt((0.0, 0.0, -1.0))
+        camera.enableCameraControls(base)
 
         #make some background
         self.room = loader.loadModel('room')
