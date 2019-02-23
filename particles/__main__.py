@@ -1517,7 +1517,7 @@ class Editor(DirectObject):
         mpos[1] *= -1 * base.win.getYSize() / 2
         mpos[0] = max(1, mpos[0])
         mpos[1] = max(1, mpos[1])
-        img = PNMImage('color_picker.png')
+        img = PNMImage(vfx_loader.miscAssetPath + '/color_picker.png')
         try:
             pixel = img.getPixel(int(mpos[0]), int(mpos[1]))
             pixel = [pixel[0], pixel[1], pixel[2]]
