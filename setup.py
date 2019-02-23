@@ -8,7 +8,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=[
         'colorama==0.4.1',
-        'panda3d==1.10.0',
+        'panda3d==1.10.1',
     ],
     setup_requires=[
         'setuptools_scm'
